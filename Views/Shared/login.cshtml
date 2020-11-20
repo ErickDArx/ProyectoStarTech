@@ -1,0 +1,141 @@
+﻿
+@{
+    ViewBag.Title = "Registro";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <style type="text/css">
+        body {
+            padding-top: 0px;
+            padding-bottom: 0px;
+        }
+    </style>
+
+
+    <nav class="navbar navbar-expand-lg bg-secondary align-top">
+
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="animate__animated animate__backInLeft" href="https://localhost:44355/Index">
+
+                    <img class="animate__animated animate__backInLeft" src="~/Imagenes/logotipo.png" alt="Alternate Text" style="width: 50%" />
+                </a>
+
+
+            </div>
+            <button class="navbar-toggler navbar-light" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="collapse navbar-collapse justify-content-end " id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item mr-2 mt-2 mb-2 animate__heartBeat">@Html.ActionLink("Iniciar Sesion", "InicioSesion", "Sesion", new { area = "" }, new { @class = "text-white text-decoration-none nav-link active btn btn-primary rounded", @OnClick = "iniciarsesion()", @id = "sesion" })</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <div class="mt-5">
+        <div class="card-header bg-dark text-white">
+
+            <div class="container">
+                <div class="row ">
+
+                    <div class="col-md-4 border-primary border-left mt-4">
+
+                        <h5 class="container text-center">Sobre Nosotros</h5>
+                        <div class="card-body">
+                            <p class="">
+                                Nos dedicamos a expandir la manera de
+                                comprar articulos informaticos de
+                                forma virtual en todo el territorio Costarricense
+                            </p>
+                        </div>
+
+
+                    </div>
+
+                    <div class="col-md-4 mt-4 border-primary border-left">
+
+                        <h5 class="container text-center">Ubicacion</h5>
+                        <div class="card-body">
+                            <p class="">
+                                Nos ubicamos en San Jose,
+                                Plaza Avenida, Avenida Central entre Calles 7 y 9
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4 border-primary border-left mt-4">
+
+                        <h5 class="container text-center">Nuestras Redes Sociales</h5>
+                        <div class="card-body">
+                            <ul class="nav nav justify-content-center">
+
+                                <li class="nav-item">
+                                    <i class="nav-link fa fa-facebook" style="font-size:50px"></i>
+                                </li>
+
+                                <li class="nav-item">
+                                    <i class="nav-link fa fa-twitter" style="font-size:50px"></i>
+                                </li>
+                                <li class="nav-item">
+                                    <i class="nav-link fa fa-instagram" style="font-size:50px"></i>
+
+                                </li>
+                                <li class="nav-item">
+                                    <i class="nav-link fa fa-whatsapp" style="font-size:50px"></i>
+                                </li>
+
+                                <li class="nav-item">
+                                    <i class="nav-link fa fa-" style="font-size:50px"></i>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="container">
+                <hr class="my-4 bg-white">
+                <p class="text-center"> Copyright Star Technology Costa Rica </p>
+            </div>
+
+        </div>
+
+
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/JavaScripts/Carrito.js")
+    @Scripts.Render("/JavaScripts/CerrarSesion.js")
+    @Scripts.Render("/JavaScripts/iniciarsesion.js")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

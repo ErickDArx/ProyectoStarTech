@@ -1,0 +1,92 @@
+﻿@model ProyectoStarTech.Usuario
+
+@{
+    ViewBag.Title = "RegistroUsuario";
+}
+
+<nav aria-label="breadcrumb shadow p-3 mb-5 bg-white rounded" class="mt-4">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Inicio", "Index", "Index")</li>
+        <li class="breadcrumb-item active" aria-current="page">Registro de usuarios</li>
+    </ol>
+</nav>
+
+<div class="jumbotron jumbotron-fluid bg-info rounded text-white">
+    <div class="container">
+        <h1 class="display-4">Regístrate para poder adquirir nuestros  productos</h1>
+       
+    </div>
+</div>
+<br>
+<br>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="row">
+
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nombre" } })
+            @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.primerApellido, new { htmlAttributes = new { @class = "form-control", @placeholder = "Primer Apellido" } })
+            @Html.ValidationMessageFor(model => model.primerApellido, "", new { @class = "text-danger" })
+        </div>
+
+
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.segundoApelldo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Segundo Apellido" } })
+            @Html.ValidationMessageFor(model => model.segundoApelldo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <div class="row">
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.direccionEnvio, new { htmlAttributes = new { @class = "form-control", @placeholder = "Dirección de Envío" } })
+            @Html.ValidationMessageFor(model => model.direccionEnvio, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.correo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Correo Electrónico" } })
+            @Html.ValidationMessageFor(model => model.correo, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.contraseña, new { htmlAttributes = new { @class = "form-control", @placeholder = "Contraseña" } })
+            @Html.ValidationMessageFor(model => model.contraseña, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <div class="row justify-content-md-center">
+        <div class="col-md-2">
+            <input type="submit" class="btn btn-primary" value="Registrar" />
+        </div>
+    </div>
+    <br>
+    <div class="row justify-content-md-center">
+        <div class="col-md-3">
+            <a href="@Url.Action("InicioSesion","Sesion")"><h6>¿Ya tiene una cuenta?</h6></a>
+
+        </div>
+    </div>
+
+
+</div>
+    }
+
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

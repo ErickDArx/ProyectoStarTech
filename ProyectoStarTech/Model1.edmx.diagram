@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="addac6d88b244f0380cbcddd24048920" Name="Diagram1">
+        <EntityTypeShape EntityType="StarTechModel.Carrito" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StarTechModel.Compra" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StarTechModel.productos" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="StarTechModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StarTechModel.Usuario" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <AssociationConnector Association="StarTechModel.FK__Carrito__codigoP__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="StarTechModel.FK__Carrito__idUsuar__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="StarTechModel.FK__Compra__codigoPr__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="StarTechModel.FK__Compra__idUsuari__4222D4EF" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

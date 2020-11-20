@@ -1,0 +1,50 @@
+﻿@model IEnumerable<productos>
+
+@{
+
+    ViewBag.Title = "STCR";
+}
+
+
+<nav aria-label="breadcrumb" class="mt-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active " aria-current="page">Página de Inicio</li>
+    </ol>
+</nav>
+
+<h2 class="mt-1">
+    Dale un vistazo a nuestros Productos
+    <span class="badge badge-secondary bg-primary animate__animated animate__tada">Nueva Mercadería</span>
+</h2>
+<br />
+<div class="container">
+
+    <div class="row row-cols-1 row-cols-md-3">
+        @foreach (var m in Model)
+        {
+            <div class="col-sm-6  p-1 mb-1 bg-white rounded">
+
+                <div class="card h-100">
+
+                    <img src="@m.imagenUrl" class="img-thumbnail" alt="..." style="width:100%; height:60%;">
+                    <div class="card-body">
+
+
+                        <h6 class="card-title mt-4"> @m.nombreProducto </h6>
+                        <h6 class="card-text">Precio: ₡ @m.precioProducto</h6>
+
+                        <input type="submit" name="name" value="Ver información"
+                               class="btn btn-primary btn-block mt-4 stretched-link" onclick="verInfo('@m.codigoProducto')" />
+                    </div>
+
+                </div>
+
+            </div>
+
+        }
+    </div>
+
+</div>
+
+
+<script src="~/JavaScripts/CerrarSesion.js"></script>

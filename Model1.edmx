@@ -1,0 +1,319 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="StarTechModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="carrito">
+          <Key>
+            <PropertyRef Name="codigoCarrito" />
+          </Key>
+          <Property Name="codigoCarrito" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigoProducto" Type="varchar" MaxLength="8" />
+          <Property Name="idUsuario" Type="int" />
+          <Property Name="cantidadComprar" Type="int" />
+          <Property Name="nombreProducto" Type="varchar" MaxLength="60" />
+          <Property Name="precioProducto" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Compra">
+          <Key>
+            <PropertyRef Name="idCompra" />
+          </Key>
+          <Property Name="idCompra" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigoProducto" Type="varchar" MaxLength="8" />
+          <Property Name="idUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="productos">
+          <Key>
+            <PropertyRef Name="codigoProducto" />
+          </Key>
+          <Property Name="codigoProducto" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="nombreProducto" Type="varchar" MaxLength="40" />
+          <Property Name="cantidadDisponible" Type="int" />
+          <Property Name="precioProducto" Type="money" />
+          <Property Name="imagenUrl" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="primerApellido" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="segundoApelldo" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="direccionEnvio" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="correo" Type="varchar" MaxLength="55" Nullable="false" />
+          <Property Name="contraseña" Type="varchar" MaxLength="16" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__carrito__codigoP__403A8C7D">
+          <End Role="productos" Type="Self.productos" Multiplicity="0..1" />
+          <End Role="carrito" Type="Self.carrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="codigoProducto" />
+            </Principal>
+            <Dependent Role="carrito">
+              <PropertyRef Name="codigoProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__carrito__idUsuar__412EB0B6">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="carrito" Type="Self.carrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="carrito">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Compra__codigoPr__412EB0B6">
+          <End Role="productos" Type="Self.productos" Multiplicity="0..1" />
+          <End Role="Compra" Type="Self.Compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="codigoProducto" />
+            </Principal>
+            <Dependent Role="Compra">
+              <PropertyRef Name="codigoProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Compra__idUsuari__4222D4EF">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="Compra" Type="Self.Compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Compra">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StarTechModelStoreContainer">
+          <EntitySet Name="carrito" EntityType="Self.carrito" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Compra" EntityType="Self.Compra" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="productos" EntityType="Self.productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__carrito__codigoP__403A8C7D" Association="Self.FK__carrito__codigoP__403A8C7D">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="carrito" EntitySet="carrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK__carrito__idUsuar__412EB0B6" Association="Self.FK__carrito__idUsuar__412EB0B6">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="carrito" EntitySet="carrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Compra__codigoPr__412EB0B6" Association="Self.FK__Compra__codigoPr__412EB0B6">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="Compra" EntitySet="Compra" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Compra__idUsuari__4222D4EF" Association="Self.FK__Compra__idUsuari__4222D4EF">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="Compra" EntitySet="Compra" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StarTechModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="StarTechEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="ComprasProc">
+          <Parameter Name="identificacionUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="carrito" EntityType="StarTechModel.carrito" />
+          <EntitySet Name="Compra" EntityType="StarTechModel.Compra" />
+          <EntitySet Name="productos" EntityType="StarTechModel.productos" />
+          <EntitySet Name="usuario" EntityType="StarTechModel.usuario" />
+          <AssociationSet Name="FK__carrito__codigoP__403A8C7D" Association="StarTechModel.FK__carrito__codigoP__403A8C7D">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="carrito" EntitySet="carrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK__carrito__idUsuar__412EB0B6" Association="StarTechModel.FK__carrito__idUsuar__412EB0B6">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="carrito" EntitySet="carrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Compra__codigoPr__412EB0B6" Association="StarTechModel.FK__Compra__codigoPr__412EB0B6">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="Compra" EntitySet="Compra" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Compra__idUsuari__4222D4EF" Association="StarTechModel.FK__Compra__idUsuari__4222D4EF">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="Compra" EntitySet="Compra" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="carrito">
+          <Key>
+            <PropertyRef Name="codigoCarrito" />
+          </Key>
+          <Property Name="codigoCarrito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigoProducto" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="idUsuario" Type="Int32" />
+          <NavigationProperty Name="productos" Relationship="StarTechModel.FK__carrito__codigoP__403A8C7D" FromRole="carrito" ToRole="productos" />
+          <NavigationProperty Name="usuario" Relationship="StarTechModel.FK__carrito__idUsuar__412EB0B6" FromRole="carrito" ToRole="usuario" />
+          <Property Name="cantidadComprar" Type="Int32" />
+          <Property Name="nombreProducto" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="precioProducto" Type="Decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Compra">
+          <Key>
+            <PropertyRef Name="idCompra" />
+          </Key>
+          <Property Name="idCompra" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigoProducto" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="idUsuario" Type="Int32" />
+          <NavigationProperty Name="productos" Relationship="StarTechModel.FK__Compra__codigoPr__412EB0B6" FromRole="Compra" ToRole="productos" />
+          <NavigationProperty Name="usuario" Relationship="StarTechModel.FK__Compra__idUsuari__4222D4EF" FromRole="Compra" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="productos">
+          <Key>
+            <PropertyRef Name="codigoProducto" />
+          </Key>
+          <Property Name="codigoProducto" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="nombreProducto" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="cantidadDisponible" Type="Int32" />
+          <Property Name="precioProducto" Type="Int64" />
+          <Property Name="imagenUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="carrito" Relationship="StarTechModel.FK__carrito__codigoP__403A8C7D" FromRole="productos" ToRole="carrito" />
+          <NavigationProperty Name="Compra" Relationship="StarTechModel.FK__Compra__codigoPr__412EB0B6" FromRole="productos" ToRole="Compra" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="primerApellido" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="segundoApelldo" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="direccionEnvio" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="correo" Type="String" Nullable="false" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="contraseña" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="carrito" Relationship="StarTechModel.FK__carrito__idUsuar__412EB0B6" FromRole="usuario" ToRole="carrito" />
+          <NavigationProperty Name="Compra" Relationship="StarTechModel.FK__Compra__idUsuari__4222D4EF" FromRole="usuario" ToRole="Compra" />
+        </EntityType>
+        <Association Name="FK__carrito__codigoP__403A8C7D">
+          <End Type="StarTechModel.productos" Role="productos" Multiplicity="0..1" />
+          <End Type="StarTechModel.carrito" Role="carrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="codigoProducto" />
+            </Principal>
+            <Dependent Role="carrito">
+              <PropertyRef Name="codigoProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__carrito__idUsuar__412EB0B6">
+          <End Type="StarTechModel.usuario" Role="usuario" Multiplicity="0..1" />
+          <End Type="StarTechModel.carrito" Role="carrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="carrito">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Compra__codigoPr__412EB0B6">
+          <End Type="StarTechModel.productos" Role="productos" Multiplicity="0..1" />
+          <End Type="StarTechModel.Compra" Role="Compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="codigoProducto" />
+            </Principal>
+            <Dependent Role="Compra">
+              <PropertyRef Name="codigoProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Compra__idUsuari__4222D4EF">
+          <End Type="StarTechModel.usuario" Role="usuario" Multiplicity="0..1" />
+          <End Type="StarTechModel.Compra" Role="Compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Compra">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StarTechModelStoreContainer" CdmEntityContainer="StarTechEntities">
+          <EntitySetMapping Name="carrito">
+            <EntityTypeMapping TypeName="StarTechModel.carrito">
+              <MappingFragment StoreEntitySet="carrito">
+                <ScalarProperty Name="precioProducto" ColumnName="precioProducto" />
+                <ScalarProperty Name="nombreProducto" ColumnName="nombreProducto" />
+                <ScalarProperty Name="cantidadComprar" ColumnName="cantidadComprar" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="codigoProducto" ColumnName="codigoProducto" />
+                <ScalarProperty Name="codigoCarrito" ColumnName="codigoCarrito" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Compra">
+            <EntityTypeMapping TypeName="StarTechModel.Compra">
+              <MappingFragment StoreEntitySet="Compra">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="codigoProducto" ColumnName="codigoProducto" />
+                <ScalarProperty Name="idCompra" ColumnName="idCompra" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productos">
+            <EntityTypeMapping TypeName="StarTechModel.productos">
+              <MappingFragment StoreEntitySet="productos">
+                <ScalarProperty Name="imagenUrl" ColumnName="imagenUrl" />
+                <ScalarProperty Name="precioProducto" ColumnName="precioProducto" />
+                <ScalarProperty Name="cantidadDisponible" ColumnName="cantidadDisponible" />
+                <ScalarProperty Name="nombreProducto" ColumnName="nombreProducto" />
+                <ScalarProperty Name="codigoProducto" ColumnName="codigoProducto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="StarTechModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="direccionEnvio" ColumnName="direccionEnvio" />
+                <ScalarProperty Name="segundoApelldo" ColumnName="segundoApelldo" />
+                <ScalarProperty Name="primerApellido" ColumnName="primerApellido" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

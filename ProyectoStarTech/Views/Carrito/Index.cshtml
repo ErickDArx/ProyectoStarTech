@@ -1,0 +1,116 @@
+﻿
+@model IEnumerable<Carrito>
+
+
+@{
+    ViewBag.Title = "STCR";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Mi Carrito</title>
+</head>
+<body onload="calcularCompra()">
+
+    <nav aria-label="breadcrumb shadow p-3 mb-5 bg-white rounded" class="mt-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">@Html.ActionLink("Inicio", "Index", "Index")</li>
+            <li class="breadcrumb-item active" aria-current="page">Mi Carrito de Compras</li>
+        </ol>
+    </nav>
+
+    <div class="jumbotron jumbotron-fluid bg-info rounded text-white">
+        <div class="container">
+            <h1 class="display-4">¿Estas listo para comprar?</h1>
+            <h3 class="lead">Nosotros nos aseguraremos que su compra sea segura.</h3>
+        </div>
+    </div>
+
+    <h4>Tus lista de productos en tu carrito de compras</h4>
+
+    <div class="container">
+
+        <div class="row row-cols-1 row-cols-md-3">
+            @foreach (var m in Model)
+            {
+                <div class="col-sm-6 shadow-sm p-1 mb-1 bg-white rounded" style="margin-top:5px">
+
+                    <div class="card h-100">
+
+                        <img src="" class="img-thumbnail" alt="..." style="width:100%; height:30%;">
+                        <div class="card-body">
+
+
+                            <h6 class="card-title mt-4"> @m.idCarrito </h6>
+                            <h6 class="card-text">Codigo: @m.codigoProducto</h6>
+                            <h6 class="card-text">Precio: @m.precioProducto</h6>
+                            <input type="button" value="Ver Total" onclick="calcularCompra(@m.precioProducto)" />
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            }
+        </div>
+
+    </div>
+
+    <br />
+    <div class="container">
+
+
+        <div class="row justify-content-start" style="width:100%" >
+            <div class="col-xs-4" style="width:15%">
+                <h6>Subtotal:</h6>
+            </div>
+            <div class="col-xs-4" style="width:4%">
+             
+                </div>
+                <div class="col-xs-4" style="width:15%">
+                    <input type="text" id="txtSubtotal" class="form-control" disabled />
+                </div>
+            </div>
+        <br />
+        <div class="row">
+            <div class="col-xs-5" style="width:15%">
+                <h6>IVA (13%):</h6>
+            </div>
+            <div class="col-xs-2" style="width:4%">
+                <p> </p>
+            </div>
+            <div class="col-xs-5" style="width:15%">
+                <input type="text" id="txtIva" class="form-control" disabled />
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-xs-5" style="width:15%">
+                <h6>Total a pagar:</h6>
+            </div>
+            <div class="col-xs-2" style="width:4%">
+                <p> </p>
+            </div>
+            <div class="col-xs-5" style="width:15%">
+
+                <input type="text" id="txtTotal" class="form-control" disabled />
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-xs-6">
+            </div>
+            <div class="col-xs-6">
+                <input type="button" value="Comprar" onclick="alert2()" class="btn btn-info" />
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+@section Scripts{
+    @Scripts.Render("/JavaScripts/Compra.js")
+}

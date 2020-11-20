@@ -1,0 +1,119 @@
+﻿@model usuario
+
+@{
+    Layout = "~/Views/Shared/login.cshtml";
+    ViewBag.Title = "RegistroUsuario";
+}
+
+<nav aria-label="breadcrumb shadow p-3 mb-5 bg-white rounded" class="mt-4 mb-5">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Inicio", "Index", "Index")</li>
+        <li class="breadcrumb-item active" aria-current="page">Registro de usuarios</li>
+    </ol>
+</nav>
+
+
+<div class="row">
+    <div class="col-lg-4 col-md col-xl col-lg" style="padding:0">
+        <img src="~/Imagenes/registro.jpg" class="card-img" alt="Alternate Text" />
+    </div>
+
+    <div class="col-lg-8 bg-dark text-white">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <h5 class="text-center mt-5">Registro de Usuario</h5>
+
+            <div class="row mt-3 ">
+
+                <div class="col-lg-4">
+                    <label class="">Primer Nombre</label>
+                    @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nombre", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-lg-4">
+                    <label class="">Primer Apellido</label>
+                    @Html.EditorFor(model => model.primerApellido, new { htmlAttributes = new { @class = "form-control", @placeholder = "Primer Apellido", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.primerApellido, "", new { @class = "text-danger" })
+                </div>
+
+
+                <div class="col-lg-4">
+                    <label class="">Segundo Nombre</label>
+                    @Html.EditorFor(model => model.segundoApelldo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Segundo Apellido", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.segundoApelldo, "", new { @class = "text-danger" })
+                </div>
+
+
+                </div>
+
+                <div class="row mt-2">
+
+                    <div class="col-lg-12 mt-3">
+                        <label class="">Tu Dirección de Envió</label>
+                        @Html.EditorFor(model => model.direccionEnvio, new { htmlAttributes = new { @class = "form-control", @placeholder = "Dirección de Envío", required = "required" } })
+                        @Html.ValidationMessageFor(model => model.direccionEnvio, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-lg-4 col-md-6 col-xl-6">
+                        <label class="">Correo Electrónico</label>
+                        @Html.EditorFor(model => model.correo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Correo Electrónico", required = "required" } })
+                        @Html.ValidationMessageFor(model => model.correo, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-xl-6">
+                        <label class="">Contraseña</label>
+                        @Html.EditorFor(model => model.contraseña, new { htmlAttributes = new { @class = "form-control", @placeholder = "Contraseña", @type = "password"} })
+                        @Html.ValidationMessageFor(model => model.contraseña, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+            <div class="row justify-content-md-center mt-5">
+                <div class="col-md-12">
+                    <input type="submit" class="btn btn-success btn-block" value="Registrar" href="https://localhost:44355/Sesion/InicioSesion"/>
+
+                </div>
+            </div>
+
+            <div class="row justify-content-md-center mt-4 mb-5">
+                <div class="col-md-12">
+                    <a class="btn border-success btn-block active text-success" href="@Url.Action("InicioSesion","Sesion")"><h6>¿Ya tiene una cuenta?</h6></a>
+
+                </div>
+            </div>
+
+
+        </div>
+        }
+    </div>
+
+</div>
+
+<div>
+
+
+
+</div>
+
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+
+    }
+<script>
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+    })
+</script>

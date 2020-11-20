@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="addac6d88b244f0380cbcddd24048920" Name="Diagram1">
+        <EntityTypeShape EntityType="StarTechModel.carrito" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="StarTechModel.Compra" Width="1.5" PointX="3" PointY="3.75" />
+        <EntityTypeShape EntityType="StarTechModel.productos" Width="1.5" PointX="6.625" PointY="4.125" />
+        <EntityTypeShape EntityType="StarTechModel.usuario" Width="1.5" PointX="0.75" PointY="3.375" />
+        <AssociationConnector Association="StarTechModel.FK__carrito__codigoP__403A8C7D" />
+        <AssociationConnector Association="StarTechModel.FK__carrito__idUsuar__412EB0B6" />
+        <AssociationConnector Association="StarTechModel.FK__Compra__codigoPr__412EB0B6" />
+        <AssociationConnector Association="StarTechModel.FK__Compra__idUsuari__4222D4EF" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

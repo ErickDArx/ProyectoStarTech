@@ -1,0 +1,85 @@
+﻿@model ProyectoStarTech.productos
+
+@{
+
+    ViewBag.Title = "Index";
+}
+
+<nav aria-label="breadcrumb" class="mt-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item "> <a href="https://localhost:44355/Index">Pagina de Inicio</a> </li>
+        <li class="breadcrumb-item active" aria-current="page">@Model.nombreProducto</li>
+    </ol>
+</nav>
+
+<div class="card mb-3 border">
+    <div class="row no-gutters">
+        <div class="col-md-4 border">
+            <img src="@Model.imagenUrl" class="card-img" alt="...">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body border">
+                <h5 class="card-title card-header bg-info">@Model.nombreProducto</h5>
+                <p class="card-text card-header ">Cantidad disponible : @Model.cantidadDisponible</p>
+                <p class="card-text card-header ">Precio : @Model.precioProducto</p>
+                <p class="card-text card-footer border-0"><small class="text-muted">Codigo de producto: @Model.codigoProducto</small></p>
+
+
+
+                @if (Session["correo"] != null && Session["idUsuario"] != null)
+                {
+
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Ingrese la cantidad que desea comprar</label>
+
+                        <input type="number" name="name"
+                               value=""
+                               class="form-control"
+                               id="cantidad" />
+                    </div>
+
+                    <input type="submit" class="btn btn-success btn-block"
+                           onclick="guardarcarrito('@Model.codigoProducto', '@Model.cantidadDisponible', '@Model.nombreProducto', '@Model.precioProducto')"
+                           name="submit" value="Añadir al carrito"/>
+                    //Este boton debe redirigir al carrito
+
+
+                }
+                else
+                {
+                    <p class="alert alert-dark text-center">Si deseas comprar, primero debes de registrarte para acceder a esta función</p>
+                }
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content border border-danger">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Haz borrado el producto del carrito</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center align-content-center">
+                Para ver reflejados los cambios, por favor actualiza la pagina
+                <i class="fa fa-trash align-content-center" style="font-size:50px"></i>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-block btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+    })
+
+</script>

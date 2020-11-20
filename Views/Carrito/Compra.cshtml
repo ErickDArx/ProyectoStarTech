@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Compra>
+@{
+
+    ViewBag.Title = "Compra";
+}
+
+<h2>Mis Compras</h2>
+
+
+<div class="">
+    @foreach (var m in Model)
+    {
+
+        if (Session["idUsuario"] == null)
+        {
+            //Agregar filtro para evitar que usuarios ingresen sin iniciar sesion
+            <script> window.location.href='@Url.Action("Index", "Index")'; </script>
+        }
+        else if (Session["idUsuario"].Equals(m.idUsuario))
+        {
+
+            <div class="card mb-4">
+
+                <div class="card-header">
+
+                    <h6 class="card-title mt-4">Identificacion del usuario: @m.idUsuario</h6>
+
+
+                </div>
+                <div class="card-body">
+
+                    <h6 class="card-text" id="precio">Detalle de la compra: @m.codigoProducto </h6>
+
+                    <h6 class="card-text">Codigo: @m.idCompra</h6>
+                </div>
+                <div class="card-footer">
+
+                </div>
+
+            </div>
+
+        }
+    }
+</div>
